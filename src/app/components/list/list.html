@@ -1,0 +1,5 @@
+<div class="list-item-wrapper">
+    @for (bookmark of bookmarkList$ | async; track bookmark.id) {
+        <app-list-item [bookmark]="bookmark"></app-list-item>
+    }
+</div>
