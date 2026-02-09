@@ -14,3 +14,8 @@ export const GetBookmarksError = createAction(
     '[Bookmarks] get bookmarks error',
     props<{error: string}>()
 );
+
+export const AddNewBookmark = createAction(
+    '[Bookmarks] add new bookmark',
+    props<{ bookmark: IBookmark }>()
+);

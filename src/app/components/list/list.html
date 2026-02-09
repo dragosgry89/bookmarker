@@ -1,13 +1,11 @@
-<div class="list-item-wrapper">
-    <!-- list bookmarks -->
-    @for (bookmark of bookmarkList$ | async; track bookmark.id) {
-        <app-list-item [bookmark]="bookmark"></app-list-item>
-    } @empty {
-        <span>No bookmarks available...</span>
-    }
+<!-- list bookmarks -->
+@for (bookmark of bookmarkList$ | async; track bookmark.id) {
+    <app-list-item [bookmark]="bookmark"></app-list-item>
+} @empty {
+    <span>No bookmarks available...</span>
+}
 
-    <!-- in case of an error -->
-    @if (error$ | async) {
-        <p class="error-message">{{ error$ | async }}</p>
-    }
-</div>
+<!-- in case of an error -->
+@if (error$ | async) {
+    <p class="error-message">{{ error$ | async }}</p>
+}

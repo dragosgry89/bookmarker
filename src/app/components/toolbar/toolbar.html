@@ -1,5 +1,7 @@
 <mat-toolbar>
-    <span>
-        <a class="home-link" [routerLink]="['']">Bookmarker</a>
-    </span>
+    <a class="toolbar-link" [routerLink]="['']">Bookmarker</a>
+    <span class="spacer"></span>
+    <a class="toolbar-link" [routerLink]="['/bookmark', '']">
+        <mat-icon fontIcon="add"></mat-icon>
+    </a>
 </mat-toolbar>

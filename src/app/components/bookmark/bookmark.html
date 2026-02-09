@@ -1,1 +1,22 @@
-<p>bookmark works!; ID = {{ id }}</p>
+<mat-card>
+    <mat-card-header>
+        <h3>{{ headerText }}</h3>
+    </mat-card-header>
+    <mat-card-content>
+        <form novalidate>
+            <div class="input-group">
+                <label>Name</label>
+                <input
+                    [(ngModel)]="bookmarkName" 
+                    name="name"/>
+            </div>
+            <div class="input-group">
+                <label>URL</label>
+                <input
+                    [(ngModel)]="bookmarkURL"
+                    name="url"/>
+            </div>
+        </form>
+        <button (click)="saveBookmark()" [disabled]="!isValid">Save</button>
+    </mat-card-content>
+</mat-card>

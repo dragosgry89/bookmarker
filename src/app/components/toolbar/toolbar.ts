@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatIcon } from '@angular/material/icon';
 import { MatToolbar } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 
@@ -6,7 +7,8 @@ import { RouterModule } from '@angular/router';
   selector: 'app-toolbar',
   imports: [
     RouterModule,
-    MatToolbar
+    MatToolbar,
+    MatIcon
   ],
   templateUrl: './toolbar.html',
   styleUrl: './toolbar.less',

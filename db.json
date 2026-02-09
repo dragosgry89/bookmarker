@@ -1,19 +1,24 @@
 {
-    "bookmarks": [
-        {
-            "id": "1",
-            "name": "YouTube",
-            "url": "https://www.youtube.com"
-        },
-        {
-            "id": "2",
-            "name": "MotoGP",
-            "url": "https://www.motogp.com"
-        },
-        {
-            "id": "3",
-            "name": "Yahoo Finance",
-            "url": "https://finance.yahoo.com/"
-        }
-    ]
+  "bookmarks": [
+    {
+      "id": "1",
+      "name": "YouTube",
+      "url": "https://www.youtube.com"
+    },
+    {
+      "id": "2",
+      "name": "MotoGP",
+      "url": "https://www.motogp.com"
+    },
+    {
+      "id": "3",
+      "name": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/"
+    },
+    {
+      "id": "f45d",
+      "name": "Digi24",
+      "url": "https://www.digi24.ro/"
+    }
+  ]
 }

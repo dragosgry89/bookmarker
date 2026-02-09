@@ -8,6 +8,7 @@ const BASE_URL = 'http://localhost:3000';
 
 export interface IBookmarkService {
   getBookmarks(): Observable<IBookmark[]>;
+  createBookmark(bookmark: IBookmark): Observable<any>;
 }
 
 @Injectable({
@@ -21,5 +22,9 @@ export class BookmarksService {
       .pipe(
         map((data: any) => data || [])
       )
+  }
+
+  public createBookmark(bookmark: IBookmark): Observable<any> {
+    return this.http.post(BASE_URL + '/bookmarks', bookmark);
   }
 }
