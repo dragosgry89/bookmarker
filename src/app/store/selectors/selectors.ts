@@ -7,3 +7,8 @@ export const bookmarks = createSelector(
     selectBookmarksState,
     (bookmarksState) => bookmarksState.bookmarks
 );
+
+export const error = createSelector(
+    selectBookmarksState,
+    (bookmarksState) => bookmarksState.error
+);

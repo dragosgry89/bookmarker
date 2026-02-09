@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IBookmark } from '../models/IBookmark';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 
 // Standard JSON server port
 const BASE_URL = 'http://localhost:3000';

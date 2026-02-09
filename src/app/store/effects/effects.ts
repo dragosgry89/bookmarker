@@ -1,9 +1,9 @@
 import { inject, Injectable } from "@angular/core";
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { GetBookmarks, GetBookmarksSuccess } from "../actions/actions";
+import { GetBookmarks, GetBookmarksError, GetBookmarksSuccess } from "../actions/actions";
 import { BookmarksService } from "../../services/bookmarks.service";
-import { map, switchMap } from "rxjs";
+import { catchError, map, of, switchMap } from "rxjs";
 
 @Injectable()
 export class BookmarksEffects {
@@ -17,7 +17,8 @@ export class BookmarksEffects {
             ofType(GetBookmarks),
             switchMap(() => 
                 this.bookmarksService.getBookmarks().pipe(
-                    map((bookmarks) => GetBookmarksSuccess({ bookmarks }))
+                    map((bookmarks) => GetBookmarksSuccess({ bookmarks })),
+                    catchError(() => of(GetBookmarksError({ error: 'An error occurred - Make sure JSON server is running...' })))
                 )
             )
         )

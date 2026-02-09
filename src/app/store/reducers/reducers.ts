@@ -1,13 +1,15 @@
 import { createReducer, on } from "@ngrx/store";
 import { IBookmark } from "../../models/IBookmark";
-import { GetBookmarks, GetBookmarksSuccess } from "../actions/actions";
+import { GetBookmarks, GetBookmarksError, GetBookmarksSuccess } from "../actions/actions";
 
 export interface IBookmarksState {
     bookmarks: IBookmark[];
+    error: string;
 };
 
 const initialState: IBookmarksState = {
-    bookmarks: []
+    bookmarks: [],
+    error: ''
 };
 
 export const bookmarksReducer = createReducer(
@@ -17,6 +19,12 @@ export const bookmarksReducer = createReducer(
     })),
     on(GetBookmarksSuccess, (state, { bookmarks }) => ({
         ...state,
-        bookmarks
+        bookmarks,
+        error: ''
+    })),
+    on(GetBookmarksError, (state, { error }) => ({
+        ...state,
+        bookmarks: [],
+        error
     }))
 )

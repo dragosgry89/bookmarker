@@ -9,3 +9,8 @@ export const GetBookmarksSuccess = createAction(
     '[Bookmarks] get bookmarks success',
     props<{bookmarks: IBookmark[]}>()
 );
+
+export const GetBookmarksError = createAction(
+    '[Bookmarks] get bookmarks error',
+    props<{error: string}>()
+);
