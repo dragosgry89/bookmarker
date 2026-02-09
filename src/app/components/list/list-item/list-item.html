@@ -1,6 +1,10 @@
 <mat-card>
     <mat-card-content>
-        <p>{{ bookmark.name }}</p>
-        <a href="{{ bookmark.url }}" target="_blank">{{ bookmark.url }}</a>
+        <mat-icon class="bookmark" fontIcon="bookmark"></mat-icon>
+        <span class="bookmark-name">{{ bookmark.name }}</span>
+        <a class="bookmark-url" href="{{ bookmark.url }}" target="_blank">{{ bookmark.url }}</a>
+        <a class="edit-link" [routerLink]="['/bookmark', bookmark.id]">
+            <mat-icon class="edit" fontIcon="edit"></mat-icon>
+        </a>
     </mat-card-content>
 </mat-card>
