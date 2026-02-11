@@ -25,6 +25,16 @@ export class BookmarksService {
   }
 
   public createBookmark(bookmark: IBookmark): Observable<any> {
-    return this.http.post(BASE_URL + '/bookmarks', bookmark);
+    return this.http.post(
+      BASE_URL + '/bookmarks', 
+      bookmark
+    );
+  }
+
+  public editBookmark(bookmark: IBookmark): Observable<any> {
+    return this.http.put(
+      BASE_URL + '/bookmarks/' + bookmark.id, 
+      bookmark
+    );
   }
 }

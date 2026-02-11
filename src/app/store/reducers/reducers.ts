@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { IBookmark } from "../../models/IBookmark";
-import { AddNewBookmark, GetBookmarks, GetBookmarksError, GetBookmarksSuccess } from "../actions/actions";
+import { AddNewBookmark, EditBookmark, GetBookmarks, GetBookmarksError, GetBookmarksSuccess } from "../actions/actions";
 
 export interface IBookmarksState {
     bookmarks: IBookmark[];
@@ -28,6 +28,10 @@ export const bookmarksReducer = createReducer(
         error
     })),
     on(AddNewBookmark, (state, { bookmark }) => ({
+        ...state,
+        bookmarks: [...state.bookmarks, bookmark]
+    })),
+    on(EditBookmark, (state, { bookmark }) => ({
         ...state,
         bookmarks: [...state.bookmarks, bookmark]
     }))

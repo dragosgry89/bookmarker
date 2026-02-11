@@ -19,3 +19,9 @@ export const AddNewBookmark = createAction(
     '[Bookmarks] add new bookmark',
     props<{ bookmark: IBookmark }>()
 );
+
+export const EditBookmark = createAction(
+    '[Bookmarks] edit bookmark',
+    props<{ bookmark: IBookmark }>()
+);
+
