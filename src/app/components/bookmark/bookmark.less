@@ -1,0 +1,48 @@
+.form-wrapper {
+    display: flex;
+    justify-content: space-between;
+    
+    .input-group {
+        width: 48%;
+        
+        margin: 24px 0;
+
+        input, label {
+            display: block;
+            line-height: 24px;
+        }
+
+        input {
+            background: transparent;
+            width: 100%;
+
+            border: 0;
+            border-bottom: 1px solid #000;
+        }
+    }
+}
+
+button {
+
+    float: right;
+
+    padding: 8px 16px;
+    margin: 0 8px 0 0;
+
+    color: white;
+    border: 0;
+    border-radius: 16px;
+
+    &.primary {
+        background: purple;
+    }
+
+    &.secondary {
+        background: grey;
+    }
+
+    &:hover, &:active {
+        cursor: pointer;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+}

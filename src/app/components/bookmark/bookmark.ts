@@ -89,7 +89,10 @@ export class Bookmark implements OnInit, OnDestroy {
       this.store.dispatch(EditBookmark({ bookmark }));
     }
 
-    // go back 
+    this.goBack();
+  }
+
+  public goBack() {
     this.router.navigate(['']);
   }
 

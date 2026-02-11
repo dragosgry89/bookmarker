@@ -4,19 +4,22 @@
     </mat-card-header>
     <mat-card-content>
         <form novalidate>
-            <div class="input-group">
-                <label>Name</label>
-                <input
-                    [(ngModel)]="bookmarkName" 
-                    name="name"/>
-            </div>
-            <div class="input-group">
-                <label>URL</label>
-                <input
-                    [(ngModel)]="bookmarkURL"
-                    name="url"/>
+            <div class="form-wrapper">
+                <div class="input-group">
+                    <label>Name</label>
+                    <input
+                        [(ngModel)]="bookmarkName" 
+                        name="name"/>
+                </div>
+                <div class="input-group">
+                    <label>URL</label>
+                    <input
+                        [(ngModel)]="bookmarkURL"
+                        name="url"/>
+                </div>
             </div>
         </form>
-        <button (click)="saveBookmark()" [disabled]="!isValid">Save</button>
+        <button class="secondary" (click)="goBack()">Back</button>
+        <button class="primary" (click)="saveBookmark()" [disabled]="!isValid">Save</button>
     </mat-card-content>
 </mat-card>
