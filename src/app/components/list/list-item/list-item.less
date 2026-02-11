@@ -2,22 +2,21 @@ mat-card {
     margin-bottom: 16px;
     height: 84px;
 
-    mat-icon {
-        margin-top: -4px;
-    }
-
     mat-card-content {
         display: grid;
         grid-template: 
-            'icon name edit'
-            'icon url edit' 
-            / 48px auto 48px;
+            'icon name edit delete'
+            'icon url edit delete' 
+            / 48px auto 36px 36px;
 
         .bookmark {
             grid-area: icon;
         }
         .edit {
             grid-area: edit;
+        }
+        .delete {
+            grid-area: delete;
         }
 
         .bookmark-name {
@@ -28,11 +27,6 @@ mat-card {
         }
         .bookmark-url {
             grid-area: url;
-        }
-
-        .edit-link {
-            color: black;
-            text-decoration: none;
         }
     }
 }

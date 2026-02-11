@@ -1,6 +1,9 @@
 <!-- list bookmarks -->
 @for (bookmark of bookmarkList$ | async; track bookmark.id) {
-    <app-list-item [bookmark]="bookmark"></app-list-item>
+    <app-list-item 
+        [bookmark]="bookmark"
+        (edit)="editBookmark($event)"
+        (delete)="deleteBookmark($event)"></app-list-item>
 } @empty {
     <span>No bookmarks available...</span>
 }

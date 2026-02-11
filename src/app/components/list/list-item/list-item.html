@@ -3,8 +3,14 @@
         <mat-icon class="bookmark" fontIcon="bookmark"></mat-icon>
         <span class="bookmark-name">{{ bookmark.name }}</span>
         <a class="bookmark-url" href="{{ bookmark.url }}" target="_blank">{{ bookmark.url }}</a>
-        <a class="edit-link" [routerLink]="['/bookmark', bookmark.id]">
-            <mat-icon class="edit" fontIcon="edit"></mat-icon>
-        </a>
+
+        <mat-icon 
+            class="crud-btn edit" 
+            fontIcon="edit"
+            (click)="onEdit()"></mat-icon>
+        <mat-icon 
+            class="crud-btn delete" 
+            fontIcon="close"
+            (click)="onDelete()"></mat-icon>
     </mat-card-content>
 </mat-card>

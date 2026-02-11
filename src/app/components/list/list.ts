@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+
 import { ListItem } from './list-item/list-item';
 import { IBookmark } from '../../models/IBookmark';
 import { Observable } from 'rxjs';
-import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { IBookmarksState } from '../../store/reducers/reducers';
 import * as BookmarksSelectors from '../../store/selectors/selectors';
-import { GetBookmarks } from '../../store/actions/actions';
+import { DeleteBookmark, GetBookmarks } from '../../store/actions/actions';
 
 @Component({
   selector: 'app-list',
@@ -21,12 +23,24 @@ export class List implements OnInit {
   public bookmarkList$: Observable<IBookmark[]>;
   public error$: Observable<string>;
 
-  constructor(private store: Store<IBookmarksState>) {
+  private router = inject(Router);
+
+  constructor(
+      private store: Store<IBookmarksState>
+    ) {
     this.bookmarkList$ = this.store.select(BookmarksSelectors.bookmarks);
     this.error$ = this.store.select(BookmarksSelectors.error);
   }
 
   public ngOnInit(): void {
     this.store.dispatch(GetBookmarks());
+  }
+
+  public editBookmark(id: string) {
+    this.router.navigate(['/bookmark/' + id]);
+  }
+
+  public deleteBookmark(id: string) {
+    this.store.dispatch(DeleteBookmark({ bookmarkId: id }));
   }
 }

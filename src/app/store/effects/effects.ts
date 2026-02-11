@@ -1,7 +1,7 @@
 import { inject, Injectable } from "@angular/core";
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { AddNewBookmark, EditBookmark, GetBookmarks, GetBookmarksError, GetBookmarksSuccess } from "../actions/actions";
+import { AddNewBookmark, DeleteBookmark, EditBookmark, GetBookmarks, GetBookmarksError, GetBookmarksSuccess } from "../actions/actions";
 import { BookmarksService } from "../../services/bookmarks.service";
 import { catchError, map, of, switchMap } from "rxjs";
 import { MOCK_TEXT } from "../../mockData/texts";
@@ -46,4 +46,15 @@ export class BookmarksEffects {
             )
         )
     );
+
+    deleteBookmark$ = createEffect(() => 
+        this.actions$.pipe(
+            ofType(DeleteBookmark),
+            switchMap((action) =>
+                this.bookmarksService.deleteBookmark(action.bookmarkId).pipe(
+                    catchError((error) => of(GetBookmarksError({ error })))
+                )
+            )
+        )
+    )
 }

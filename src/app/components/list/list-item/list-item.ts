@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
@@ -22,4 +22,17 @@ import { RouterModule } from '@angular/router';
 export class ListItem {
   @Input()
   public bookmark: IBookmark = <IBookmark>{};
+
+  @Output()
+  public edit = new EventEmitter<string>();
+  @Output()
+  public delete = new EventEmitter<string>();
+
+  public onEdit() {
+    this.edit.emit(this.bookmark.id);
+  }
+
+  public onDelete() {
+    this.delete.emit(this.bookmark.id);
+  }
 }
