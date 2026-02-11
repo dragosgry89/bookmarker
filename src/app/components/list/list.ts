@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { ListItem } from './list-item/list-item';
 import { IBookmark } from '../../models/IBookmark';
-import { Observable } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IBookmarksState } from '../../store/reducers/reducers';
 import * as BookmarksSelectors from '../../store/selectors/selectors';
@@ -24,16 +24,29 @@ import { DeleteConfirmDialog } from './delete-confirm-dialog/delete-confirm-dial
 export class List implements OnInit {
   public readonly dialog = inject(MatDialog);
 
+  public searchText$: Observable<string>;
   public bookmarkList$: Observable<IBookmark[]>;
   public error$: Observable<string>;
+
+  public bookmarks: IBookmark[] = [];
 
   private router = inject(Router);
 
   constructor(
-      private store: Store<IBookmarksState>
-    ) {
+    private store: Store<IBookmarksState>
+  ) {
+    this.searchText$ = this.store.select(BookmarksSelectors.searchText);
     this.bookmarkList$ = this.store.select(BookmarksSelectors.bookmarks);
     this.error$ = this.store.select(BookmarksSelectors.error);
+
+    combineLatest(
+      this.searchText$,
+      this.bookmarkList$
+    ).subscribe(([searchText, bookmarks]) => {
+      this.bookmarks = bookmarks.filter((item) => {
+        return !searchText ? true : this.fuzzySearchMatch(item, searchText)
+      })
+    })
   }
 
   public ngOnInit(): void {
@@ -52,5 +65,10 @@ export class List implements OnInit {
         this.store.dispatch(DeleteBookmark({ bookmarkId: id }));
       }
     })
+  }
+
+  private fuzzySearchMatch(item: IBookmark, searchText: string) {
+    return item.name.toLowerCase().indexOf(searchText.toLowerCase()) !== -1 ||
+      item.url.toLowerCase().indexOf(searchText.toLowerCase()) !== -1;
   }
 }

@@ -12,3 +12,9 @@ export const error = createSelector(
     selectBookmarksState,
     (bookmarksState) => bookmarksState.error
 );
+
+export const searchText = createSelector(
+    selectBookmarksState,
+    (bookmarksState) => bookmarksState.searchText
+);
+

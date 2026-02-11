@@ -1,7 +1,17 @@
 <mat-toolbar>
     <a class="toolbar-link" [routerLink]="['']">Bookmarker</a>
-    <span class="spacer"></span>
-    <a class="toolbar-link" [routerLink]="['/bookmark', '']">
-        <mat-icon fontIcon="add"></mat-icon>
-    </a>
+
+    @if (onHomePage) {
+        <div class="search-wrapper">
+            <mat-icon fontIcon="search"></mat-icon>
+            <input 
+                [value]="searchTextValue"
+                (input)="searchBookmarks($event)"
+                placeholder="Type to search..."/>
+        </div>
+
+        <a class="toolbar-link" [routerLink]="['/bookmark', '']">
+            <mat-icon fontIcon="add"></mat-icon>
+        </a>
+    }
 </mat-toolbar>

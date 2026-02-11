@@ -1,5 +1,9 @@
+@if (searchText$ | async) {
+    <h2>Results for "{{ searchText$ | async }}"</h2>
+}
+
 <!-- list bookmarks -->
-@for (bookmark of bookmarkList$ | async; track bookmark.id) {
+@for (bookmark of bookmarks; track bookmark.id) {
     <app-list-item 
         [bookmark]="bookmark"
         (edit)="editBookmark($event)"

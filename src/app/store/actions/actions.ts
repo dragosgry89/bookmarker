@@ -24,8 +24,13 @@ export const EditBookmark = createAction(
     '[Bookmarks] edit bookmark',
     props<{ bookmark: IBookmark }>()
 );
+
 export const DeleteBookmark = createAction(
     '[Bookmarks] delete bookmark',
     props<{ bookmarkId: string }>()
 );
 
+export const SearchTextChanged = createAction(
+    '[Bookmarks] search text changed',
+    props<{ value: string }>()
+);

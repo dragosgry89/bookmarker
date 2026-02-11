@@ -1,15 +1,35 @@
 mat-toolbar {
-    background: #6750A4;
+    display: flex;
 
+    background: #6750A4;
     color: white;
+
+    justify-content: space-between;
 
     .toolbar-link {
         color: white;
         text-decoration: none;
     }
 
-    .spacer {
+    .search-wrapper {
         display: flex;
-        width: 100%;
+        margin: auto;
+
+        input {
+            border-color: white;
+            color: white;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        mat-icon {
+            margin-top: 4px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
     }
 }

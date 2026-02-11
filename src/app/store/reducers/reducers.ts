@@ -1,13 +1,15 @@
 import { createReducer, on } from "@ngrx/store";
 import { IBookmark } from "../../models/IBookmark";
-import { AddNewBookmark, DeleteBookmark, EditBookmark, GetBookmarks, GetBookmarksError, GetBookmarksSuccess } from "../actions/actions";
+import { AddNewBookmark, DeleteBookmark, EditBookmark, GetBookmarks, GetBookmarksError, GetBookmarksSuccess, SearchTextChanged } from "../actions/actions";
 
 export interface IBookmarksState {
+    searchText: string;
     bookmarks: IBookmark[];
     error: string;
 };
 
 const initialState: IBookmarksState = {
+    searchText: '',
     bookmarks: [],
     error: ''
 };
@@ -29,14 +31,21 @@ export const bookmarksReducer = createReducer(
     })),
     on(AddNewBookmark, (state, { bookmark }) => ({
         ...state,
-        bookmarks: [...state.bookmarks, bookmark]
+        bookmarks: [...state.bookmarks, bookmark],
+        searchText: ''
     })),
     on(EditBookmark, (state, { bookmark }) => ({
         ...state,
-        bookmarks: [...state.bookmarks, bookmark]
+        bookmarks: [...state.bookmarks.filter((item) => item.id !== bookmark.id), bookmark],
+        searchText: ''
     })),
     on(DeleteBookmark, (state, { bookmarkId }) => ({
         ...state,
-        bookmarks: [...state.bookmarks.filter((bookmark) => bookmark.id !== bookmarkId)]
+        bookmarks: [...state.bookmarks.filter((bookmark) => bookmark.id !== bookmarkId)],
+        searchText: ''
+    })),
+    on(SearchTextChanged, (state, { value }) => ({
+        ...state,
+        searchText: value
     }))
 )
