@@ -1,16 +1,27 @@
 @if (searchText$ | async) {
+    <!-- list search results -->
     <h2>Results for "{{ searchText$ | async }}"</h2>
+    @for (bookmark of searchResults; track bookmark.id) {
+        <app-list-item 
+            [bookmark]="bookmark"
+            (edit)="editBookmark($event)"
+            (delete)="deleteBookmark($event)"></app-list-item>
+    } @empty {
+        <span>No bookmarks available...</span>
+    }
+} @else {
+    <!-- bookmarks -->
+    @for (bookmark of bookmarks; track bookmark.id) {
+        <app-list-item 
+            [bookmark]="bookmark"
+            (edit)="editBookmark($event)"
+            (delete)="deleteBookmark($event)"></app-list-item>
+    } @empty {
+        <span>No bookmarks available...</span>
+    }
 }
 
-<!-- list bookmarks -->
-@for (bookmark of bookmarks; track bookmark.id) {
-    <app-list-item 
-        [bookmark]="bookmark"
-        (edit)="editBookmark($event)"
-        (delete)="deleteBookmark($event)"></app-list-item>
-} @empty {
-    <span>No bookmarks available...</span>
-}
+
 
 <!-- in case of an error -->
 @if (error$ | async) {

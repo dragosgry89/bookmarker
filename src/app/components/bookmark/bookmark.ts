@@ -84,7 +84,14 @@ export class Bookmark implements OnInit, OnDestroy {
     };
 
     if (!this.isEdit) {
-      this.store.dispatch(AddNewBookmark({ bookmark }));
+      this.store.dispatch(AddNewBookmark(
+        { 
+          bookmark: {
+            ...bookmark,
+            created: (new Date()).toISOString()
+          }
+        }
+      ));
     } else {
       this.store.dispatch(EditBookmark({ bookmark }));
     }

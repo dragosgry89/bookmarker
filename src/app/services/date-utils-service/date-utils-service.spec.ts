@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BookmarksService } from './bookmarks.service';
+import { DateUtilsService } from './date-utils-service';
 
-describe('BookmarksService', () => {
-  let service: BookmarksService;
+describe('DateUtilsService', () => {
+  let service: DateUtilsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(BookmarksService);
+    service = TestBed.inject(DateUtilsService);
   });
 
   it('should be created', () => {

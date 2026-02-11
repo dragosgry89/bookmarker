@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IBookmark } from '../models/IBookmark';
+import { IBookmark } from '../../models/IBookmark';
 import { map, Observable, tap } from 'rxjs';
 
 // Standard JSON server port

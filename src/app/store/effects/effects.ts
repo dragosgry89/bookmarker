@@ -2,7 +2,7 @@ import { inject, Injectable } from "@angular/core";
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AddNewBookmark, DeleteBookmark, EditBookmark, GetBookmarks, GetBookmarksError, GetBookmarksSuccess } from "../actions/actions";
-import { BookmarksService } from "../../services/bookmarks.service";
+import { BookmarksService } from "../../services/bookmarks-service/bookmarks.service";
 import { catchError, map, of, switchMap } from "rxjs";
 import { MOCK_TEXT } from "../../mockData/texts";
 

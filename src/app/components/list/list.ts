@@ -28,6 +28,7 @@ export class List implements OnInit {
   public bookmarkList$: Observable<IBookmark[]>;
   public error$: Observable<string>;
 
+  public searchResults: IBookmark[] = [];
   public bookmarks: IBookmark[] = [];
 
   private router = inject(Router);
@@ -43,10 +44,12 @@ export class List implements OnInit {
       this.searchText$,
       this.bookmarkList$
     ).subscribe(([searchText, bookmarks]) => {
-      this.bookmarks = bookmarks.filter((item) => {
+      this.searchResults = bookmarks.filter((item) => {
         return !searchText ? true : this.fuzzySearchMatch(item, searchText)
-      })
-    })
+      });
+
+      this.bookmarks = bookmarks;
+    });
   }
 
   public ngOnInit(): void {
