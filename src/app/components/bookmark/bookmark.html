@@ -21,7 +21,9 @@
                 </div>
             </div>
         </form>
-        <button class="secondary" (click)="goBack()">Back</button>
-        <button class="primary" (click)="saveBookmark()" [disabled]="!isValid">Save</button>
+        <div class="bookmark-actions">
+            <button class="primary" (click)="saveBookmark()" [disabled]="!isValid">Save</button>
+            <button class="secondary" (click)="goBack()">Back</button>
+        </div>
     </mat-card-content>
 </mat-card>

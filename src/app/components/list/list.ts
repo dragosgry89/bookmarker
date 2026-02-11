@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 import { ListItem } from './list-item/list-item';
 import { IBookmark } from '../../models/IBookmark';
@@ -9,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { IBookmarksState } from '../../store/reducers/reducers';
 import * as BookmarksSelectors from '../../store/selectors/selectors';
 import { DeleteBookmark, GetBookmarks } from '../../store/actions/actions';
+import { DeleteConfirmDialog } from './delete-confirm-dialog/delete-confirm-dialog';
 
 @Component({
   selector: 'app-list',
@@ -20,6 +22,8 @@ import { DeleteBookmark, GetBookmarks } from '../../store/actions/actions';
   styleUrl: './list.less',
 })
 export class List implements OnInit {
+  public readonly dialog = inject(MatDialog);
+
   public bookmarkList$: Observable<IBookmark[]>;
   public error$: Observable<string>;
 
@@ -41,6 +45,12 @@ export class List implements OnInit {
   }
 
   public deleteBookmark(id: string) {
-    this.store.dispatch(DeleteBookmark({ bookmarkId: id }));
+    const dialogRef = this.dialog.open(DeleteConfirmDialog);
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.store.dispatch(DeleteBookmark({ bookmarkId: id }));
+      }
+    })
   }
 }
