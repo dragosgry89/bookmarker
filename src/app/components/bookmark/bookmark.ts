@@ -33,6 +33,7 @@ export class Bookmark implements OnInit, OnDestroy {
 
   public bookmarkName: string = '';
   public bookmarkURL: string = '';
+  public created: string = '';
 
   private isEdit: boolean = false;
 
@@ -66,6 +67,7 @@ export class Bookmark implements OnInit, OnDestroy {
     this.subscription = this.bookmark$.subscribe((bookmark: IBookmark) => {
       this.bookmarkName = bookmark.name;
       this.bookmarkURL = bookmark.url;
+      this.created = bookmark.created || '';
     });
   }
 
@@ -80,7 +82,8 @@ export class Bookmark implements OnInit, OnDestroy {
     const bookmark: IBookmark = <IBookmark>{
       id: this.pathId || undefined,
       name: this.bookmarkName,
-      url: this.bookmarkURL
+      url: this.bookmarkURL,
+      created: this.created
     };
 
     if (!this.isEdit) {

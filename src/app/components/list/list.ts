@@ -11,6 +11,7 @@ import { IBookmarksState } from '../../store/reducers/reducers';
 import * as BookmarksSelectors from '../../store/selectors/selectors';
 import { DeleteBookmark, GetBookmarks } from '../../store/actions/actions';
 import { DeleteConfirmDialog } from './delete-confirm-dialog/delete-confirm-dialog';
+import { DateUtilsService } from '../../services/date-utils-service/date-utils-service';
 
 @Component({
   selector: 'app-list',
@@ -28,10 +29,11 @@ export class List implements OnInit {
   public bookmarkList$: Observable<IBookmark[]>;
   public error$: Observable<string>;
 
-  public searchResults: IBookmark[] = [];
+  public searchText: string = '';
   public bookmarks: IBookmark[] = [];
 
   private router = inject(Router);
+  private dateUtilsService = inject(DateUtilsService)
 
   constructor(
     private store: Store<IBookmarksState>
@@ -44,10 +46,7 @@ export class List implements OnInit {
       this.searchText$,
       this.bookmarkList$
     ).subscribe(([searchText, bookmarks]) => {
-      this.searchResults = bookmarks.filter((item) => {
-        return !searchText ? true : this.fuzzySearchMatch(item, searchText)
-      });
-
+      this.searchText = searchText;
       this.bookmarks = bookmarks;
     });
   }
@@ -67,6 +66,34 @@ export class List implements OnInit {
       if (result) {
         this.store.dispatch(DeleteBookmark({ bookmarkId: id }));
       }
+    })
+  }
+
+  public get searchResults(): IBookmark[] { 
+    return this.bookmarks.filter((item) => {
+      return !this.searchText ? true : this.fuzzySearchMatch(item, this.searchText)
+    });
+  }
+
+  public get todaysBookmarks(): IBookmark[] {
+    return this.bookmarks.filter((item) => {
+      return this.dateUtilsService.diffAgainstToday(item.created) < 1;
+    })
+  }
+
+  public get yesterdayBookmarks(): IBookmark[] {
+    return this.bookmarks.filter((item) => {
+      const diff = this.dateUtilsService.diffAgainstToday(item.created);
+
+      return diff > 1 && diff < 2;
+    })
+  }
+
+  public get olderBookmarks(): IBookmark[] {
+    return this.bookmarks.filter((item) => {
+      const diff = this.dateUtilsService.diffAgainstToday(item.created);
+
+      return diff > 2;
     })
   }
 

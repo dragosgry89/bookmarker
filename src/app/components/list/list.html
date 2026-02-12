@@ -10,8 +10,31 @@
         <span>No bookmarks available...</span>
     }
 } @else {
-    <!-- bookmarks -->
-    @for (bookmark of bookmarks; track bookmark.id) {
+    <!-- today bookmarks -->
+    <h2>Today</h2>
+    @for (bookmark of todaysBookmarks; track bookmark.id) {
+        <app-list-item 
+            [bookmark]="bookmark"
+            (edit)="editBookmark($event)"
+            (delete)="deleteBookmark($event)"></app-list-item>
+    } @empty {
+        <span>No bookmarks available...</span>
+    }
+
+    <!-- Yesterday bookmarks -->
+    <h2>Yesterday</h2>
+    @for (bookmark of yesterdayBookmarks; track bookmark.id) {
+        <app-list-item 
+            [bookmark]="bookmark"
+            (edit)="editBookmark($event)"
+            (delete)="deleteBookmark($event)"></app-list-item>
+    } @empty {
+        <span>No bookmarks available...</span>
+    }
+
+    <!-- Older bookmarks -->
+    <h2>Older</h2>
+    @for (bookmark of olderBookmarks; track bookmark.id) {
         <app-list-item 
             [bookmark]="bookmark"
             (edit)="editBookmark($event)"
