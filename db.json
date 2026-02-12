@@ -12,12 +12,6 @@
       "url": "https://www.motogp.com"
     },
     {
-      "id": "5236",
-      "name": "Ziarul Financiar",
-      "url": "https://www.zf.ro",
-      "created": "2026-02-11T23:08:25.893Z"
-    },
-    {
       "id": "662b",
       "name": "Yahoo Finance",
       "url": "https://finance.yahoo.com",
@@ -28,6 +22,12 @@
       "name": "YouTube",
       "url": "htts://www.youtube.com",
       "created": "2026-02-02T23:09:03.852Z"
+    },
+    {
+      "id": "bb3f",
+      "name": "Ziarul Financiar",
+      "url": "https://www.zf.ro",
+      "created": "2026-02-12T00:26:01.086Z"
     }
   ]
 }

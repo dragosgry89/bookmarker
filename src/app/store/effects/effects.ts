@@ -33,7 +33,7 @@ export class BookmarksEffects {
                     catchError((error) => of(GetBookmarksError({ error })))
                 )
             )
-        )
+        ), { dispatch: false }
     );
 
     editBookMark$ = createEffect(() => 
@@ -44,7 +44,7 @@ export class BookmarksEffects {
                     catchError((error) => of(GetBookmarksError({ error })))
                 )
             )
-        )
+        ), { dispatch: false }
     );
 
     deleteBookmark$ = createEffect(() => 
@@ -55,6 +55,6 @@ export class BookmarksEffects {
                     catchError((error) => of(GetBookmarksError({ error })))
                 )
             )
-        )
+        ), { dispatch: false }
     )
 }
